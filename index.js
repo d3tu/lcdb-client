@@ -1,4 +1,4 @@
-const nodeFetch = require("node-Fetch"),
+const nodeFetch = require("node-fetch"),
   handler = (module.exports = function api({
   host, auth, retriesLimit = 15, retriesTimeout = 1000, retries = 0
   }) {
