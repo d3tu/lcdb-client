@@ -1,6 +1,6 @@
 const nodeFetch = require("node-Fetch"),
   handler = (module.exports = function api({
-  url, Authorization, limit = 15, speed = 1000, count = 0
+  url, Authorization, retriesLimit = 15, retriesTimeout = 1000, retries = 0
   }) {
   return function opt(db, options) {
     return new Proxy(function method() {}, {
@@ -22,14 +22,14 @@ const nodeFetch = require("node-Fetch"),
             .then(res => res.json())
             .then(({ data }) => data)
             .catch(() => {
-              if (count > limit) return null;
-              count++;
+              if (retries > retriesLimit) return null;
+              retries++;
               return new Promise(res => {
                 setTimeout(() => {
                   res(
-                    handler({ url, Authorization, limit, speed, count })(db, options)[method](ref, value)
+                    handler({ url, Authorization, retriesLimit, retriesTimeout, retries })(db, options)[method](ref, value)
                   );
-                }, speed);
+                }, retriesTimeout);
               });
             });
         };
