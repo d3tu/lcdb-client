@@ -1,0 +1,20 @@
+{
+  "name": "lcdb-client",
+  "version": "0.0.1",
+  "description": "Client api for lcdb.",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d3tu/lcdb-client.git"
+  },
+  "keywords": ["lcdb", "client"],
+  "author": "d3tu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/d3tu/lcdb-client/issues"
+  },
+  "homepage": "https://github.com/d3tu/lcdb-client#readme",
+  "dependencies": {
+    "node-fetch": "^2.6.1"
+  }
+}
