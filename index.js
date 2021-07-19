@@ -1,12 +1,12 @@
 const nodeFetch = require("node-Fetch"),
   handler = (module.exports = function api({
-  url, Authorization, retriesLimit = 15, retriesTimeout = 1000, retries = 0
+  host, auth, retriesLimit = 15, retriesTimeout = 1000, retries = 0
   }) {
   return function opt(db, options) {
     return new Proxy(function method() {}, {
       get(_, method) {
         return function args(ref, value) {
-          return nodeFetch(url, {
+          return nodeFetch(host, {
               method: 'POST',
               body: JSON.stringify({
                 db,
@@ -16,7 +16,7 @@ const nodeFetch = require("node-Fetch"),
                 value
               }),
               headers: {
-                Authorization
+                Authorization: auth
               }
             })
             .then(res => res.json())
@@ -27,7 +27,7 @@ const nodeFetch = require("node-Fetch"),
               return new Promise(res => {
                 setTimeout(() => {
                   res(
-                    handler({ url, Authorization, retriesLimit, retriesTimeout, retries })(db, options)[method](ref, value)
+                    handler({ host, auth, retriesLimit, retriesTimeout, retries })(db, options)[method](ref, value)
                   );
                 }, retriesTimeout);
               });

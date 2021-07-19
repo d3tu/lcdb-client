@@ -3,8 +3,8 @@ Client api for lcdb.
 ```javascript
 const lcdbClient = require("lcdb-client");
 const api = lcdbClient({
-  url: "http://localhost:8080",
-  Authorization: "secret",
+  host: "http://localhost:8080",
+  auth: "secret",
   retriesLimit: 15,
   retriesTimeout: 1000
 });
