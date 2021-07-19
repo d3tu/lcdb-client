@@ -1,6 +1,6 @@
 {
   "name": "lcdb-client",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Client api for lcdb.",
   "main": "index.js",
   "repository": {
