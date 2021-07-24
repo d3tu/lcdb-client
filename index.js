@@ -67,7 +67,9 @@ module.exports = ({
       resolve, timeout
     };
     
-    _send(JSON.stringify(data));
+    _send(JSON.stringify(Object.assign({
+      id
+    }, data)));
     
     return promise;
   }
@@ -80,12 +82,12 @@ module.exports = ({
   return function db(d, o) {
     return new Proxy(function method() {}, {
       get(t, m) {
-        return function args(k, v) {
+        return function args(r, v) {
           return send({
             db: d,
             options: o,
             method: m,
-            key: k,
+            ref: r,
             value: v
           });
         }
