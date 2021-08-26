@@ -11,7 +11,7 @@ module.exports = ({
     promises = new Map(),
     connected = false,
     connect = () => {
-      ws = new WS();
+      ws = new WS(host, wsOptions);
       
       ws.onopen = () => {
         if (!connected) _send(JSON.stringify({
