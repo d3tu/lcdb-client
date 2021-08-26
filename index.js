@@ -7,7 +7,7 @@ module.exports = ({
 } = {}) => {
   var idNum = 0,
     ws = null,
-    cache = [],
+    queue = [],
     promises = new Map(),
     connected = false,
     connect = () => {
