@@ -6,7 +6,8 @@ const api = lcdbClient({
   host: "ws://localhost:8080",
   auth: "secret",
   wsOptions: {},
-  maxWait: 5000
+  maxWait: 5000,
+  reconnectTimeout: 500
 });
 const db = api("db");
 (async() => {
